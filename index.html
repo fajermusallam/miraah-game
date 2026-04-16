@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مِرآة — مسرحيةٌ في عشرة فصول</title>
+<meta name="description" content="لعبة مسرحية سينمائية من مشروع الجماد الحي — إهداءً إلى روح المخرج والمؤلف عبدالرحمن المسلّم، رحمه الله">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;500;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #07090f;
+  --bg-mid: #0e1320;
+  --bg-card: #151b2c;
+  --gold: #d4a84b;
+  --gold-light: #f0c968;
+  --gold-deep: #9a7a2e;
+  --gold-whisper: #5a4620;
+  --mirror: #8fb8d4;
+  --mirror-deep: #5a8aa8;
+  --ink: #e8e4d9;
+  --ink-muted: #7a7569;
+  --ink-whisper: #4a473f;
+  --rose: #c97b7b;
+  --sage: #8aa88a;
+  --curtain: #3d1414;
+  --curtain-light: #6a2525;
+  --shadow-deep: 0 25px 80px rgba(0,0,0,0.7);
+  --glow-gold: 0 0 50px rgba(212, 168, 75, 0.3);
+  --glow-mirror: 0 0 40px rgba(143, 184, 212, 0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg-deep);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body {
+  background:
+    radial-gradient(ellipse at top, rgba(212, 168, 75, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(143, 184, 212, 0.04) 0%, transparent 60%),
+    var(--bg-deep);
+  background-attachment: fixed;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   شاشة الإهداء — مهيبة، صامتة، سينمائية
+   ═══════════════════════════════════════════════════════════════ */
+.dedication-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: dedicationFade 15s ease-out forwards;
+  pointer-events: none;
+  overflow-y: auto;
+  padding: 20px 0;
+}
+.dedication-content {
+  text-align: center;
+  padding: 30px 24px;
+  max-width: 620px;
+  opacity: 0;
+  animation: dedicationInner 15s ease-out forwards;
+}
+.dedication-intro {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #5a4620;
+  margin-bottom: 28px;
+}
+.dedication-lines-primary {
+  font-family: 'Amiri', serif;
+  font-size: clamp(17px, 3.8vw, 21px);
+  line-height: 2.3;
+  color: #d4a84b;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+.dedication-line-emphasis {
+  font-family: 'Scheherazade New', 'Amiri', serif;
+  font-size: clamp(18px, 4vw, 23px);
+  color: #f0c968;
+  font-weight: 700;
+  margin: 18px 0;
+  letter-spacing: 1px;
+}
+.dedication-separator {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #9a7a2e, transparent);
+  margin: 26px auto 22px;
+}
+.dedication-father-label {
+  font-family: 'Amiri', serif;
+  font-size: clamp(16px, 3.4vw, 19px);
+  color: #d4a84b;
+  font-style: italic;
+  margin-bottom: 18px;
+  line-height: 2;
+}
+.dedication-lines-secondary {
+  font-family: 'Amiri', serif;
+  font-size: clamp(15px, 3.2vw, 18px);
+  line-height: 2.2;
+  color: #c9a850;
+  font-style: italic;
+  margin: 14px 0;
+}
+.dedication-closing-prayer {
+  font-family: 'Scheherazade New', 'Amiri', serif;
+  font-size: clamp(17px, 3.8vw, 21px);
+  color: #f0c968;
+  line-height: 2.2;
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(154, 122, 46, 0.3);
+  font-weight: 400;
+}
+.dedication-name-full {
+  font-family: 'Scheherazade New', 'Amiri', serif;
+  font-size: clamp(26px, 5.5vw, 34px);
+  color: #f5d27a;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 14px 0;
+  text-shadow: 0 0 30px rgba(212, 168, 75, 0.4);
+}
+.dedication-final-prayer {
+  font-family: 'Amiri', serif;
+  font-size: clamp(15px, 3.2vw, 17px);
+  color: #c9a850;
+  margin-top: 14px;
+  line-height: 2;
+  font-style: italic;
+}
+.dedication-signature {
+  font-family: 'Amiri', serif;
+  font-size: 14px;
+  color: #7a6030;
+  margin-top: 32px;
+  opacity: 0.75;
+  letter-spacing: 1px;
+}
+@keyframes dedicationFade {
+  0% { opacity: 0; }
+  4% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+@keyframes dedicationInner {
+  0% { opacity: 0; transform: translateY(20px); }
+  6% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ستارة المسرح — رفع/إسدال
+   ═══════════════════════════════════════════════════════════════ */
+.curtain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+}
+.curtain-overlay.active { display: block; }
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, var(--curtain) 0%, var(--curtain-light) 50%, var(--curtain) 100%);
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.6);
+}
+.curtain-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(0,0,0,0.3) 18px,
+      rgba(0,0,0,0.3) 22px
+    );
+}
+.curtain-right { right: 0; }
+.curtain-left { left: 0; }
+.curtain-overlay.rising .curtain-right { animation: curtainRiseRight 2.5s ease-in-out forwards; }
+.curtain-overlay.rising .curtain-left { animation: curtainRiseLeft 2.5s ease-in-out forwards; }
+.curtain-overlay.falling .curtain-right { animation: curtainFallRight 2.5s ease-in-out forwards; }
+.curtain-overlay.falling .curtain-left { animation: curtainFallLeft 2.5s ease-in-out forwards; }
+@keyframes curtainRiseRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes curtainRiseLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@keyframes curtainFallRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes curtainFallLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.chapter-title-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--gold-light);
+  font-family: 'Amiri', serif;
+  font-size: clamp(24px, 6vw, 36px);
+  font-weight: 700;
+  letter-spacing: 3px;
+  white-space: nowrap;
+  animation: chapterTitleShow 2.5s ease-out forwards;
+  text-shadow: 0 0 30px rgba(212, 168, 75, 0.6);
+}
+@keyframes chapterTitleShow {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  40% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   النجوم في الخلفية
+   ═══════════════════════════════════════════════════════════════ */
+.stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--gold-light); border-radius: 50%; opacity: 0; animation: twinkle 5s infinite ease-in-out; }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 0.6; transform: scale(1); } }
+
+/* ═══════════════════════════════════════════════════════════════
+   الحاوية والشاشات
+   ═══════════════════════════════════════════════════════════════ */
+.container { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 20px 16px 60px; min-height: 100vh; }
+.screen { display: none; animation: fadeIn 0.8s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ═══════════════════════════════════════════════════════════════
+   الشاشة الافتتاحية — ملصق السينما
+   ═══════════════════════════════════════════════════════════════ */
+.hero { text-align: center; padding: 24px 12px; }
+
+.hero-poster-mark {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: var(--gold-deep);
+  margin-bottom: 14px;
+}
+
+.hero-logo {
+  font-family: 'Amiri', serif;
+  font-size: clamp(58px, 13vw, 100px);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 8px;
+  margin-bottom: 14px;
+  text-shadow: 0 0 80px rgba(212, 168, 75, 0.6);
+  line-height: 1.1;
+}
+.hero-subtitle {
+  font-family: 'Scheherazade New', 'Amiri', serif;
+  font-size: clamp(18px, 4.5vw, 24px);
+  color: var(--mirror);
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  font-style: italic;
+  font-weight: 400;
+}
+.hero-subtitle-english {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 12px;
+  letter-spacing: 6px;
+  color: var(--gold-deep);
+  margin-bottom: 36px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.hero-divider {
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 30px auto;
+}
+
+.hero-tagline-box {
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  font-size: clamp(19px, 4.3vw, 23px);
+  line-height: 2.2;
+  color: var(--gold-light);
+  max-width: 580px;
+  margin: 0 auto 30px;
+  padding: 28px 24px;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+.hero-tagline-box::before, .hero-tagline-box::after {
+  content: '"';
+  font-size: 80px;
+  color: var(--gold);
+  position: absolute;
+  font-family: 'Amiri', serif;
+  opacity: 0.35;
+}
+.hero-tagline-box::before { top: -15px; right: 0; }
+.hero-tagline-box::after { bottom: -40px; left: 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   قائمة الفصول — كبوستر فيلم
+   ═══════════════════════════════════════════════════════════════ */
+.chapters-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-mid) 100%);
+  border: 1px solid var(--gold-deep);
+  border-radius: 18px;
+  padding: 26px 20px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-deep);
+  position: relative;
+}
+.chapters-card::before {
+  content: 'PROGRAMMA';
+  position: absolute;
+  top: 16px; left: 22px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--gold-deep);
+}
+.chapters-title {
+  text-align: center;
+  font-family: 'Amiri', serif;
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.chapters-subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: var(--gold-deep);
+  letter-spacing: 5px;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.chapters-list { display: flex; flex-direction: column; gap: 8px; }
+.chapter-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 14px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+  border-right: 2px solid var(--gold-deep);
+  transition: all 0.3s;
+}
+.chapter-item:hover {
+  border-color: var(--gold);
+  background: rgba(212, 168, 75, 0.04);
+  transform: translateX(-3px);
+}
+.chapter-num-roman {
+  font-family: 'Amiri', serif;
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: 700;
+  min-width: 36px;
+  text-align: center;
+  padding-top: 2px;
+}
+.chapter-info { flex: 1; }
+.chapter-name {
+  font-family: 'Amiri', serif;
+  color: var(--gold-light);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+.chapter-inner {
+  font-size: 14px;
+  color: var(--mirror);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   الأزرار — بأسلوب تذاكر مسرح
+   ═══════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 6px;
+  min-width: 160px;
+  position: relative;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+  color: var(--bg-deep);
+  box-shadow: var(--glow-gold);
+  border: 1px solid var(--gold-deep);
+}
+.btn-primary::before, .btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--bg-deep);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.btn-primary::before { right: -4px; }
+.btn-primary::after { left: -4px; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(212, 168, 75, 0.55); }
+.btn-ghost { background: transparent; color: var(--mirror); border: 1px solid var(--mirror-deep); }
+.btn-ghost:hover { background: rgba(143, 184, 212, 0.08); }
+.btn-small { padding: 9px 18px; font-size: 13px; min-width: auto; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   البطاقات
+   ═══════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 168, 75, 0.12);
+  border-radius: 16px;
+  padding: 22px 18px;
+  margin: 14px 0;
+  box-shadow: var(--shadow-deep);
+}
+.card-elevated {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-mid) 100%);
+  border: 1px solid var(--gold-deep);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   الخيارات الثلاثة للبدء
+   ═══════════════════════════════════════════════════════════════ */
+.options-start { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+.option-start {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-deep);
+  border-radius: 12px;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: right;
+  position: relative;
+}
+.option-start::before {
+  content: '⟵';
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-deep);
+  font-size: 20px;
+  transition: all 0.3s;
+}
+.option-start:hover {
+  border-color: var(--gold);
+  background: rgba(212, 168, 75, 0.04);
+  padding-left: 40px;
+}
+.option-start:hover::before {
+  color: var(--gold);
+  left: 14px;
+}
+.option-start-title { font-size: 19px; color: var(--gold); font-weight: 700; margin-bottom: 6px; font-family: 'Tajawal', sans-serif; letter-spacing: 0.5px; }
+.option-start-desc { font-size: 14px; color: var(--mirror); letter-spacing: 1px; font-family: 'Tajawal', sans-serif; }
+
+/* ═══════════════════════════════════════════════════════════════
+   الإدخال
+   ═══════════════════════════════════════════════════════════════ */
+.input-group { margin: 16px 0; }
+.input-label { display: block; font-size: 12px; color: var(--ink-muted); margin-bottom: 6px; letter-spacing: 1px; }
+.input {
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--bg-deep);
+  border: 1px solid rgba(212, 168, 75, 0.2);
+  border-radius: 10px;
+  color: var(--ink);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  transition: all 0.3s;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 168, 75, 0.12); }
+.input-normal { text-align: right; letter-spacing: normal; }
+
+/* ═══════════════════════════════════════════════════════════════
+   رأس المسرحية (أثناء اللعب)
+   ═══════════════════════════════════════════════════════════════ */
+.mini-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 18px;
+  border-bottom: 1px solid rgba(212, 168, 75, 0.08);
+  margin-bottom: 14px;
+}
+.mini-logo {
+  font-family: 'Amiri', serif;
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: 3px;
+}
+.mini-user {
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   رأس الفصل
+   ═══════════════════════════════════════════════════════════════ */
+.chapter-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px 0 16px;
+  border-bottom: 1px solid rgba(212, 168, 75, 0.12);
+  position: relative;
+}
+.chapter-header::before {
+  content: '※';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold-deep);
+  font-size: 14px;
+}
+.chapter-act-label {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--ink-whisper);
+  margin-bottom: 8px;
+  margin-top: 10px;
+}
+.chapter-act-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(19px, 4.5vw, 22px);
+  color: var(--gold);
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.chapter-scene-count { font-size: 11px; color: var(--ink-muted); letter-spacing: 3px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   شريط التقدم — بأسلوب شريط فيلم
+   ═══════════════════════════════════════════════════════════════ */
+.progress-film {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
+  padding: 6px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+  border: 1px solid var(--gold-whisper);
+}
+.progress-frame {
+  flex: 1;
+  height: 4px;
+  margin: 0 1.5px;
+  background: var(--bg-deep);
+  border-radius: 1px;
+  transition: all 0.5s;
+}
+.progress-frame.done { background: var(--gold); box-shadow: 0 0 4px var(--gold); }
+.progress-frame.current { background: var(--gold-light); animation: framePulse 1.2s infinite; }
+@keyframes framePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   الإرشادات الإخراجية — كسيناريو حقيقي
+   ═══════════════════════════════════════════════════════════════ */
+.scene-directions {
+  background: rgba(0,0,0,0.3);
+  border-right: 2px solid var(--gold-deep);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin: 14px 0;
+  font-family: 'Tajawal', sans-serif;
+}
+.scene-direction-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold-deep);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.scene-direction-text {
+  font-family: 'Amiri', serif;
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.7;
+}
+.sound-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--mirror);
+  margin-top: 6px;
+  font-style: italic;
+}
+.sound-cue::before {
+  content: '♪';
+  color: var(--mirror-deep);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   تعليق المخرج
+   ═══════════════════════════════════════════════════════════════ */
+.director-voice {
+  background: linear-gradient(135deg, rgba(143, 184, 212, 0.06) 0%, rgba(90, 138, 168, 0.03) 100%);
+  border: 1px solid var(--mirror-deep);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  position: relative;
+  animation: voiceSlide 0.7s ease;
+}
+@keyframes voiceSlide { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
+.director-voice::before {
+  content: 'صوتٌ من خلف الكاميرا';
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  background: var(--bg-card);
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--mirror-deep);
+  font-size: 10px;
+  color: var(--mirror);
+  letter-spacing: 1px;
+}
+.director-voice-text {
+  font-family: 'Amiri', serif;
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--mirror);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   صندوق السؤال — مشهد على الخشبة
+   ═══════════════════════════════════════════════════════════════ */
+.scene-box {
+  background: linear-gradient(135deg, rgba(212, 168, 75, 0.05) 0%, rgba(143, 184, 212, 0.02) 100%);
+  border-right: 3px solid var(--gold);
+  padding: 22px 20px;
+  border-radius: 12px;
+  margin: 14px 0;
+  position: relative;
+}
+.scene-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(225deg, var(--gold-deep) 0%, transparent 50%);
+  border-top-right-radius: 12px;
+  opacity: 0.4;
+}
+.scene-number {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-deep);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.scene-text {
+  font-family: 'Amiri', serif;
+  font-size: clamp(17px, 4vw, 19px);
+  line-height: 1.9;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   الخيارات الدرامية
+   ═══════════════════════════════════════════════════════════════ */
+.options-list { display: flex; flex-direction: column; gap: 9px; margin: 18px 0; }
+.option-drama {
+  background: var(--bg-card);
+  border: 1px solid rgba(143, 184, 212, 0.15);
+  border-radius: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.7;
+  text-align: right;
+  color: var(--ink);
+  position: relative;
+}
+.option-drama::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--gold);
+  transition: height 0.3s;
+  border-radius: 3px 0 0 3px;
+}
+.option-drama:hover {
+  border-color: var(--gold);
+  background: rgba(212, 168, 75, 0.04);
+  transform: translateX(-3px);
+}
+.option-drama:hover::before { height: 100%; }
+.option-drama.selected {
+  border-color: var(--gold);
+  background: rgba(212, 168, 75, 0.1);
+}
+.option-drama.selected::before { height: 100%; }
+
+/* ═══════════════════════════════════════════════════════════════
+   التحميل — ستار يتحرك
+   ═══════════════════════════════════════════════════════════════ */
+.loader-scene {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 30px;
+}
+.loader-text-main {
+  font-family: 'Amiri', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 14px;
+  margin-right: 6px;
+}
+.loader-dots { display: flex; gap: 6px; }
+.loader-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: dotPulse 1.4s infinite ease-in-out both;
+}
+.loader-dot:nth-child(1) { animation-delay: -0.32s; }
+.loader-dot:nth-child(2) { animation-delay: -0.16s; }
+@keyframes dotPulse { 0%, 80%, 100% { transform: scale(0.4); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   القفلة المسرحية (الشهادة)
+   ═══════════════════════════════════════════════════════════════ */
+.curtain-call {
+  background: linear-gradient(135deg, #141a2a 0%, #0a0e1a 100%);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 32px 22px;
+  margin: 20px 0;
+  box-shadow: var(--glow-gold);
+  position: relative;
+  overflow: hidden;
+}
+.curtain-call::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(212, 168, 75, 0.12), transparent 50%),
+    radial-gradient(circle at bottom right, rgba(143, 184, 212, 0.08), transparent 50%);
+  pointer-events: none;
+}
+.curtain-call-direction {
+  position: relative;
+  z-index: 1;
+  font-family: 'Amiri', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold-deep);
+  text-align: center;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.curtain-call-badge {
+  position: relative;
+  z-index: 1;
+  font-size: 46px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.curtain-call-label {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 6px;
+  color: var(--gold-deep);
+  margin-bottom: 8px;
+}
+.curtain-call-title {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-family: 'Amiri', serif;
+  font-size: clamp(32px, 7vw, 40px);
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.curtain-call-subtitle {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-family: 'Amiri', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--mirror);
+  margin-bottom: 22px;
+}
+
+.monologue {
+  position: relative;
+  z-index: 1;
+  font-family: 'Amiri', serif;
+  font-size: 15.5px;
+  line-height: 2.1;
+  color: var(--ink);
+  padding: 20px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  margin: 18px 0;
+  text-align: right;
+  border-right: 2px solid var(--gold-deep);
+}
+.monologue-label {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-deep);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.traits-wreath {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 16px 0;
+}
+.trait-laurel {
+  background: rgba(212, 168, 75, 0.1);
+  border: 1px solid var(--gold-deep);
+  color: var(--gold-light);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Amiri', serif;
+  font-size: 12.5px;
+}
+
+.growth-whisper-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(143, 184, 212, 0.05);
+  border-right: 2px solid var(--mirror-deep);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+.growth-whisper-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--mirror);
+  margin-bottom: 6px;
+}
+.growth-whisper-text {
+  font-family: 'Amiri', serif;
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.8;
+}
+
+.power-bloc {
+  position: relative;
+  z-index: 1;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--gold-whisper);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+.power-bloc-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.power-bloc-text {
+  font-family: 'Amiri', serif;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--ink-muted);
+}
+
+.closing-line-box {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  padding: 18px;
+  background: #000;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(212, 168, 75, 0.2);
+}
+.closing-line-text {
+  font-family: 'Amiri', serif;
+  font-style: italic;
+  font-size: clamp(13px, 3.2vw, 15px);
+  color: var(--gold-light);
+  line-height: 2;
+  letter-spacing: 0.5px;
+}
+
+.actor-credits {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Tajawal', sans-serif;
+  color: var(--gold-deep);
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   الدعوة
+   ═══════════════════════════════════════════════════════════════ */
+.invite-ticket {
+  background: var(--bg-card);
+  border: 1px dashed var(--gold);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 16px 0;
+  text-align: center;
+  position: relative;
+}
+.invite-ticket::before {
+  content: 'تذكرة دعوة';
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  background: var(--bg-deep);
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.invite-code-display {
+  font-family: 'Amiri', serif;
+  font-size: 26px;
+  color: var(--gold);
+  letter-spacing: 4px;
+  padding: 12px;
+  background: var(--bg-deep);
+  border-radius: 8px;
+  margin: 12px 0;
+  word-break: break-all;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   المقارنة
+   ═══════════════════════════════════════════════════════════════ */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.compare-cell {
+  background: var(--bg-card);
+  border: 1px solid var(--mirror-deep);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.compare-cell-label { font-size: 11px; color: var(--mirror); margin-bottom: 8px; letter-spacing: 2px; }
+.compare-cell-chapter { font-family: 'Amiri', serif; font-size: 28px; color: var(--gold); font-weight: 700; }
+.compare-cell-title { font-family: 'Amiri', serif; font-size: 12px; color: var(--mirror); margin-top: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   تنبيهات
+   ═══════════════════════════════════════════════════════════════ */
+.alert { padding: 11px 14px; border-radius: 8px; margin: 12px 0; font-size: 13px; text-align: center; font-family: 'Tajawal', sans-serif; }
+.alert-error { background: rgba(201, 123, 123, 0.12); border: 1px solid var(--rose); color: var(--rose); }
+
+/* ═══════════════════════════════════════════════════════════════
+   التذييل
+   ═══════════════════════════════════════════════════════════════ */
+.footer {
+  text-align: center;
+  padding: 26px 16px;
+  color: var(--ink-muted);
+  font-size: 11px;
+  line-height: 1.8;
+  border-top: 1px solid rgba(212, 168, 75, 0.1);
+  margin-top: 36px;
+}
+.footer-dedication {
+  font-family: 'Amiri', serif;
+  color: var(--gold-deep);
+  font-size: 12px;
+  font-style: italic;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+.footer-copyright { color: var(--gold-deep); margin-bottom: 4px; font-size: 11.5px; }
+.footer-legal { font-size: 10px; opacity: 0.7; }
+
+/* ═══════════════════════════════════════════════════════════════
+   موبايل
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .container { padding: 16px 12px 40px; }
+  .card { padding: 18px 14px; }
+  .curtain-call { padding: 26px 16px; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .btn { padding: 12px 24px; font-size: 14px; min-width: 130px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ شاشة الإهداء ═══════════════ -->
+<div class="dedication-screen" id="dedication">
+  <div class="dedication-content">
+    <div class="dedication-intro">إهـــــداء</div>
+
+    <div class="dedication-lines-primary">
+      إلى مؤسّسِ مسرحِ الرعبِ الحقيقي،<br>
+      إلى المخرجِ السينمائي،<br>
+      ومؤلّفِ النصِّ الأصلي،
+    </div>
+
+    <div class="dedication-line-emphasis">
+      إلى صانعِ «مصّاص الدماء»
+    </div>
+
+    <div class="dedication-lines-primary">
+      إلى مؤلّفِها ومخرجِها،<br>
+      أديبِ الاختلاف،<br>
+      صانعِ التغييرِ والنقلة.
+    </div>
+
+    <div class="dedication-separator"></div>
+
+    <div class="dedication-father-label">
+      إلى أبي،<br>
+      الطيّبِ، نبراسِ كلِّ ما تعلّمتُه منه.
+    </div>
+
+    <div class="dedication-lines-secondary">
+      كلُّ ما وُجِدَ هنا منك،<br>
+      وإليك.
+    </div>
+
+    <div class="dedication-lines-secondary">
+      مختلفٌ دائماً،<br>
+      ودليلٌ قائمٌ حيّ،<br>
+      على صدقِ وقوّةِ بنيانِ تأسيسك.
+    </div>
+
+    <div class="dedication-closing-prayer">
+      رحمَ اللهُ المخرجَ والمؤلّف
+    </div>
+
+    <div class="dedication-name-full">عبدالرحمن المسلّم</div>
+
+    <div class="dedication-final-prayer">
+      وأسكنَهُ فسيحَ جنّاته
+    </div>
+
+    <div class="dedication-signature">— فجر</div>
+  </div>
+</div>
+
+<!-- ═══════════════ الستارة ═══════════════ -->
+<div class="curtain-overlay" id="curtain">
+  <div class="curtain-panel curtain-right"></div>
+  <div class="curtain-panel curtain-left"></div>
+  <div class="chapter-title-overlay" id="curtain-title"></div>
+</div>
+
+<!-- ═══════════════ النجوم ═══════════════ -->
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+<!-- زر التحكم بالصوت -->
+<button id="sound-toggle" onclick="toggleSound()" style="position: fixed; top: 16px; left: 16px; background: var(--bg-card); border: 1px solid var(--gold-deep); color: var(--gold); width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; z-index: 100; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" title="التحكم بالصوت">🔊</button>
+
+<!-- ═══════════════ الشاشة 1: الافتتاحية ═══════════════ -->
+<div class="screen active" id="screen-hero">
+  <div class="hero">
+    <div class="hero-poster-mark">مسرحيةٌ في عشرة فصول</div>
+    <h1 class="hero-logo">مِرآة</h1>
+    <div class="hero-subtitle">تجربةٌ مسرحيةٌ سينمائية</div>
+    <div class="hero-subtitle-english">MIRAAH · A THEATRICAL JOURNEY</div>
+
+    <div class="hero-divider"></div>
+
+    <div class="hero-tagline-box">
+      عشرةُ فصولٍ تصاعدية، يُخرجها مخرجٌ لا يُرى،<br>
+      ويلعبُ بطولتها أنتَ وحدك.<br>
+      في كلِّ فصلٍ ستارةٌ تُرفع، وقناعٌ يسقط،<br>
+      وسؤالٌ لم تسأله لنفسك من قبل.
+    </div>
+
+    <div class="chapters-card">
+      <div class="chapters-title">البرنامج</div>
+      <div class="chapters-subtitle">PROGRAMME</div>
+      <div class="chapters-list">
+        <div class="chapter-item"><div class="chapter-num-roman">I</div><div class="chapter-info"><div class="chapter-name">الفصل الأول: ستارةٌ تُرفَع</div><div class="chapter-inner">المُلاحِظ</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">II</div><div class="chapter-info"><div class="chapter-name">الفصل الثاني: المرآةُ تنطق</div><div class="chapter-inner">المُتأمِّل</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">III</div><div class="chapter-info"><div class="chapter-name">الفصل الثالث: طفلٌ في الممر</div><div class="chapter-inner">المُستكشِف</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">IV</div><div class="chapter-info"><div class="chapter-name">الفصل الرابع: ميزانٌ على الخشبة</div><div class="chapter-inner">المُنصِف</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">V</div><div class="chapter-info"><div class="chapter-name">الفصل الخامس: ظلٌّ يسبق صاحبه</div><div class="chapter-inner">خبير الحَدَس</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">VI</div><div class="chapter-info"><div class="chapter-name">الفصل السادس: قناعٌ يسقط</div><div class="chapter-inner">البَصير</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">VII</div><div class="chapter-info"><div class="chapter-name">الفصل السابع: جرحٌ يُزهِر</div><div class="chapter-inner">المُتصالِح</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">VIII</div><div class="chapter-info"><div class="chapter-name">الفصل الثامن: بوصلةٌ في الليل</div><div class="chapter-inner">المُهتدي</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">IX</div><div class="chapter-info"><div class="chapter-name">الفصل التاسع: صدىً لا يعود</div><div class="chapter-inner">المُؤثِّر</div></div></div>
+        <div class="chapter-item"><div class="chapter-num-roman">X</div><div class="chapter-info"><div class="chapter-name">الفصل العاشر والأخير: مِشكاةٌ تشعّ</div><div class="chapter-inner">المُتمكِّن</div></div></div>
+      </div>
+    </div>
+
+    <div class="options-start">
+      <div class="option-start" onclick="go('screen-enter-code')">
+        <div class="option-start-title">لديّ تذكرةُ دخول</div>
+        <div class="option-start-desc">كود يبدأ بـ MR</div>
+      </div>
+      <div class="option-start" onclick="go('screen-invite-entry')">
+        <div class="option-start-title">لديّ تذكرةُ دعوةٍ من صديق</div>
+        <div class="option-start-desc">كود يبدأ بـ INV — يُستخدم مرةً واحدة</div>
+      </div>
+      <div class="option-start" onclick="go('screen-purchase')">
+        <div class="option-start-title">أرغبُ في حجزِ مقعدي</div>
+        <div class="option-start-desc">الخطط والأسعار</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 2: الحجز ═══════════════ -->
+<div class="screen" id="screen-purchase">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+    <button class="btn btn-ghost btn-small" onclick="go('screen-hero')">← رجوع</button>
+  </div>
+
+  <div class="card card-elevated" style="text-align: center;">
+    <h2 style="color: var(--gold); font-family: 'Amiri', serif; font-size: 24px; margin-bottom: 6px;">حجز المقعد</h2>
+    <div style="color: var(--ink-muted); font-size: 11px; letter-spacing: 3px; margin-bottom: 20px;">RESERVATIONS</div>
+
+    <div style="padding: 20px; background: var(--bg-deep); border-radius: 12px; margin-bottom: 14px; border: 1px solid var(--mirror-deep);">
+      <div style="color: var(--mirror); font-size: 13px; margin-bottom: 4px; letter-spacing: 2px;">مقعدٌ فردي</div>
+      <div style="font-family: 'Amiri', serif; font-size: 38px; color: var(--gold); font-weight: 700;">٢٠ د.ك</div>
+      <div style="color: var(--ink-muted); font-size: 12px; margin-top: 6px;">عشرة فصول + قفلة ختامية</div>
+    </div>
+
+    <div style="padding: 20px; background: linear-gradient(135deg, rgba(212, 168, 75, 0.08), rgba(143, 184, 212, 0.04)); border-radius: 12px; border: 1px solid var(--gold);">
+      <div style="color: var(--gold); font-size: 13px; margin-bottom: 4px; font-weight: 700; letter-spacing: 2px;">مقعدٌ ثنائي</div>
+      <div style="font-family: 'Amiri', serif; font-size: 38px; color: var(--gold-light); font-weight: 700;">٣٥ د.ك</div>
+      <div style="color: var(--ink-muted); font-size: 12px; margin-top: 6px;">أنتَ + صديقٌ عبر تذكرة دعوة</div>
+    </div>
+
+    <p style="color: var(--ink-muted); font-size: 14px; line-height: 2; margin: 22px 0; font-family: 'Amiri', serif;">
+      لحجزِ مقعدك، تواصل عبر انستغرام:<br>
+      <strong style="color: var(--gold); font-family: 'Tajawal', sans-serif; letter-spacing: 1px;">@fajeralmusallam</strong><br>
+      أو ادفع مباشرةً:
+    </p>
+
+    <a href="https://fashionection.com" target="_blank" class="btn btn-primary">
+      fashionection.com
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 3: إدخال الكود ═══════════════ -->
+<div class="screen" id="screen-enter-code">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+    <button class="btn btn-ghost btn-small" onclick="go('screen-hero')">← رجوع</button>
+  </div>
+
+  <div class="card card-elevated">
+    <h2 style="text-align: center; color: var(--gold); font-family: 'Amiri', serif; margin-bottom: 6px;">تذكرةُ الدخول</h2>
+    <p style="text-align: center; color: var(--ink-muted); font-size: 11px; margin-bottom: 20px; letter-spacing: 3px;">MR-XXXX-XXXX</p>
+
+    <div class="input-group">
+      <input type="text" id="code-input" class="input" placeholder="MR-XXXX-XXXX" oninput="this.value=this.value.toUpperCase()">
+    </div>
+
+    <div id="code-error" class="alert alert-error" style="display:none;"></div>
+
+    <button class="btn btn-primary" onclick="verifyCode()" style="width: 100%;">ارفَع الستارة</button>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 4: كود الدعوة ═══════════════ -->
+<div class="screen" id="screen-invite-entry">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+    <button class="btn btn-ghost btn-small" onclick="go('screen-hero')">← رجوع</button>
+  </div>
+
+  <div class="card card-elevated">
+    <h2 style="text-align: center; color: var(--gold); font-family: 'Amiri', serif; margin-bottom: 6px;">تذكرةُ الدعوة</h2>
+    <p style="text-align: center; color: var(--ink-muted); font-size: 11px; margin-bottom: 20px; letter-spacing: 3px;">تُستخدم مرةً واحدة</p>
+
+    <div class="input-group">
+      <label class="input-label">اسمك الكريم</label>
+      <input type="text" id="invite-name" class="input input-normal" placeholder="اكتب اسمك">
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">كود الدعوة</label>
+      <input type="text" id="invite-code-input" class="input" placeholder="INV-XXXXXX" oninput="this.value=this.value.toUpperCase()">
+    </div>
+
+    <div id="invite-error" class="alert alert-error" style="display:none;"></div>
+
+    <button class="btn btn-primary" onclick="verifyInvite()" style="width: 100%;">تفضّل بالدخول</button>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 5: الترحيب ═══════════════ -->
+<div class="screen" id="screen-welcome">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+    <div class="mini-user" id="welcome-user"></div>
+  </div>
+
+  <div class="card card-elevated" style="text-align: center;">
+    <div style="font-family: 'Amiri', serif; color: var(--gold-deep); font-size: 11px; letter-spacing: 4px; margin-bottom: 12px;">BEFORE THE CURTAIN RISES</div>
+    <div style="font-size: 48px; margin-bottom: 12px;">🪞</div>
+    <h2 style="color: var(--gold); font-family: 'Amiri', serif; font-size: 30px; margin-bottom: 16px;" id="welcome-greeting">أهلاً بك</h2>
+
+    <div style="font-family: 'Amiri', serif; font-style: italic; color: var(--ink); line-height: 2.2; font-size: 15px; margin-bottom: 18px; padding: 18px; background: rgba(0,0,0,0.2); border-radius: 10px; border-right: 2px solid var(--gold-deep);">
+      أمامك عشرةُ فصولٍ تصاعدية.<br>
+      في كلِّ فصلٍ ستارةٌ تُرفَع، ومشاهدُ تتواترُ أمامك،<br>
+      ومخرجٌ لا تراه يُعلّقُ على حركاتك من خلفِ الكاميرا.<br>
+      لا إجابةَ صحيحةٌ هنا، ولا خاطئة —<br>
+      هناك فقط <span style="color: var(--mirror);">أنتَ</span> كما لم يرَكَ أحدٌ من قبل.
+    </div>
+
+    <div id="welcome-invite-section" style="display:none;" class="invite-ticket">
+      <div style="color: var(--gold); font-size: 12px; margin-bottom: 8px;">تذكرةُ دعوةٍ خاصةٌ بك — لصديقٍ واحد:</div>
+      <div id="welcome-invite-code" class="invite-code-display"></div>
+      <div style="color: var(--ink-muted); font-size: 10px; margin-top: 6px; letter-spacing: 2px;">ONE-TIME USE</div>
+    </div>
+
+    <button class="btn btn-primary" onclick="startGame()">ارفَع الستارة على الفصل الأول</button>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 6: المسرح (اللعب) ═══════════════ -->
+<div class="screen" id="screen-play">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+    <div class="mini-user" id="play-user"></div>
+  </div>
+
+  <div class="chapter-header">
+    <div class="chapter-act-label">ACT — الفصل</div>
+    <div class="chapter-act-title" id="chapter-title">الفصل الأول: ستارةٌ تُرفَع</div>
+    <div class="chapter-scene-count" id="scene-count">المشهد ١ من ١٠</div>
+  </div>
+
+  <div class="progress-film" id="progress-film"></div>
+
+  <div id="director-voice-wrap"></div>
+
+  <div class="scene-directions" id="scene-directions" style="display: none;">
+    <div class="scene-direction-label">إرشاد المخرج</div>
+    <div class="scene-direction-text" id="scene-direction-text"></div>
+    <div class="sound-cue" id="sound-cue" style="display: none;"></div>
+  </div>
+
+  <div class="scene-box" id="scene-box">
+    <div class="scene-number" id="scene-number">SCENE I</div>
+    <div class="scene-text" id="scene-text">...</div>
+  </div>
+
+  <div class="options-list" id="options-list"></div>
+
+  <div id="play-loading" style="display:none;">
+    <div class="loader-scene">
+      <span class="loader-text-main">المخرج يُعدُّ المشهد التالي</span>
+      <div class="loader-dots">
+        <div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 7: القفلة (الشهادة) ═══════════════ -->
+<div class="screen" id="screen-curtain-call">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+    <div class="mini-user" id="cert-user"></div>
+  </div>
+
+  <div class="curtain-call">
+    <div class="curtain-call-direction" id="cert-direction"></div>
+    <div class="curtain-call-badge" id="cert-badge">🌱</div>
+    <div class="curtain-call-label">شهادةُ الفصل</div>
+    <div class="curtain-call-title" id="cert-title">المُلاحِظ</div>
+    <div class="curtain-call-subtitle" id="cert-subtitle"></div>
+
+    <div class="monologue">
+      <span class="monologue-label">— المونولوج —</span>
+      <div id="cert-monologue"></div>
+    </div>
+
+    <div class="traits-wreath" id="cert-traits"></div>
+
+    <div class="growth-whisper-box">
+      <div class="growth-whisper-label">همسةٌ للفصل القادم</div>
+      <div class="growth-whisper-text" id="cert-growth"></div>
+    </div>
+
+    <div class="power-bloc">
+      <div class="power-bloc-label">ما معنى هذه المرتبة</div>
+      <div class="power-bloc-text" id="cert-power"></div>
+    </div>
+
+    <div class="closing-line-box">
+      <div class="closing-line-text" id="cert-closing"></div>
+    </div>
+
+    <div class="actor-credits">
+      <div id="cert-player-name"></div>
+      <div style="color: var(--ink-whisper); font-size: 10px; margin-top: 4px; letter-spacing: 2px;" id="cert-date"></div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+    <button class="btn btn-primary btn-small" onclick="nextStage()" id="next-stage-btn">الفصل التالي</button>
+    <button class="btn btn-ghost btn-small" onclick="showPartner()" id="partner-btn" style="display:none;">عرض الشريك</button>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 8: الختام ═══════════════ -->
+<div class="screen" id="screen-final">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+  </div>
+
+  <div class="curtain-call" style="border-color: var(--gold-light);">
+    <div class="curtain-call-direction">تُسدَل الستارةُ الأخيرة، والجمهورُ يقف…</div>
+    <div class="curtain-call-badge">🏛️</div>
+    <div class="curtain-call-label">الشهادةُ الكبرى</div>
+    <div class="curtain-call-title" style="font-size: 42px;">المُتمكِّن</div>
+    <div class="curtain-call-subtitle">وصلتَ مرتبةَ المِشكاة</div>
+
+    <div class="monologue">
+      <span class="monologue-label">— المونولوج الختامي —</span>
+      <div id="final-monologue"></div>
+    </div>
+
+    <div class="traits-wreath" id="final-traits"></div>
+
+    <div class="power-bloc">
+      <div class="power-bloc-label">ختام الرحلة</div>
+      <div class="power-bloc-text" id="final-power"></div>
+    </div>
+
+    <div class="closing-line-box" style="margin-top: 24px;">
+      <div class="closing-line-text" id="final-closing"></div>
+    </div>
+
+    <div class="actor-credits">
+      <div id="final-player-name"></div>
+      <div style="color: var(--ink-whisper); font-size: 10px; margin-top: 4px; letter-spacing: 2px;">
+        THE END · النهاية
+      </div>
+    </div>
+  </div>
+
+  <div id="final-invite-section" style="display:none;" class="invite-ticket">
+    <div style="color: var(--gold); font-size: 13px; margin-bottom: 8px; font-weight: 700;">شارك المسرح مع صديق</div>
+    <p style="color: var(--ink-muted); font-size: 12px;">امنحه تذكرة الدعوة هذه:</p>
+    <div class="invite-code-display" id="final-invite-code"></div>
+    <button class="btn btn-ghost btn-small" onclick="copyInvite()" id="copy-btn">نسخ التذكرة</button>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <button class="btn btn-primary" onclick="showPartner()" id="final-partner-btn" style="display:none;">عرض نتائج شريكي</button>
+  </div>
+</div>
+
+<!-- ═══════════════ الشاشة 9: الشريك ═══════════════ -->
+<div class="screen" id="screen-partner">
+  <div class="mini-header">
+    <div class="mini-logo">مِرآة</div>
+    <button class="btn btn-ghost btn-small" onclick="backFromPartner()">← رجوع</button>
+  </div>
+
+  <div class="card card-elevated">
+    <h2 style="text-align: center; color: var(--gold); font-family: 'Amiri', serif; margin-bottom: 4px;">الرحلتانِ على مسرحٍ واحد</h2>
+    <div style="text-align: center; color: var(--ink-muted); font-size: 11px; letter-spacing: 3px; margin-bottom: 20px;">TWO JOURNEYS · ONE STAGE</div>
+
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <div class="compare-cell-label">أنتَ</div>
+        <div class="compare-cell-chapter" id="my-stage-display">١</div>
+        <div class="compare-cell-title" id="my-current-title"></div>
+      </div>
+      <div class="compare-cell">
+        <div class="compare-cell-label" id="partner-label">الشريك</div>
+        <div class="compare-cell-chapter" id="partner-stage-display">—</div>
+        <div class="compare-cell-title" id="partner-current-title"></div>
+      </div>
+    </div>
+
+    <div id="partner-certs-list" style="margin-top: 18px;"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-dedication">إهداءً إلى روح المخرج والمؤلف عبدالرحمن المسلّم — رحمه الله</div>
+  <div class="footer-copyright">© حقوق محفوظة لـ فجر عبدالرحمن المسلم — مؤسسة مشروع الجماد الحي</div>
+  <div class="footer-legal">محمية بموجب قانون حماية حقوق المؤلف الكويتي رقم 64/1999 واتفاقية برن الدولية</div>
+</div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// بيانات الفصول للواجهة
+// ═══════════════════════════════════════════════════════════════
+const CHAPTERS_DATA = {
+  1: { act: "الفصل الأول: ستارةٌ تُرفَع", inner: "المُلاحِظ", badge: "🌱", title: "المُلاحِظ", subtitle: "يرى ما يفوتُ الآخرين" },
+  2: { act: "الفصل الثاني: المرآةُ تنطق", inner: "المُتأمِّل", badge: "🪞", title: "المُتأمِّل", subtitle: "يتأمّلُ قبل أن يحكم" },
+  3: { act: "الفصل الثالث: طفلٌ في الممر", inner: "المُستكشِف", badge: "🎈", title: "المُستكشِف", subtitle: "وصلَ إلى طفلِهِ الداخلي" },
+  4: { act: "الفصل الرابع: ميزانٌ على الخشبة", inner: "المُنصِف", badge: "⚖️", title: "المُنصِف", subtitle: "ضميرُهُ حيٌّ ومتوازن" },
+  5: { act: "الفصل الخامس: ظلٌّ يسبق صاحبه", inner: "خبير الحَدَس", badge: "🌙", title: "خبير الحَدَس", subtitle: "يقرأُ ما بين السطور" },
+  6: { act: "الفصل السادس: قناعٌ يسقط", inner: "البَصير", badge: "🔍", title: "البَصير", subtitle: "يرى الأقنعةَ تتهاوى" },
+  7: { act: "الفصل السابع: جرحٌ يُزهِر", inner: "المُتصالِح", badge: "🕯️", title: "المُتصالِح", subtitle: "تجاوزَ جراحَهُ بوعي" },
+  8: { act: "الفصل الثامن: بوصلةٌ في الليل", inner: "المُهتدي", badge: "🧭", title: "المُهتدي", subtitle: "بوصلتُهُ القيميةُ واضحة" },
+  9: { act: "الفصل التاسع: صدىً لا يعود", inner: "المُؤثِّر", badge: "✨", title: "المُؤثِّر", subtitle: "أثرُهُ يتجاوزُ حضورَه" },
+  10: { act: "الفصل العاشر والأخير: مِشكاةٌ تشعّ", inner: "المُتمكِّن", badge: "🏛️", title: "المُتمكِّن", subtitle: "وصلَ مرتبةَ المِشكاة" }
+};
+
+const ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+const ARABIC_NUM = ["", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩", "١٠"];
+const QUESTIONS_PER_CHAPTER = 10;
+
+let state = {
+  code: null, isInvited: false, inviteCode: null, userName: "",
+  stage: 1, questionNumber: 0, answers: [], allAnswers: [],
+  certificates: [], currentQuestion: null, hasInvite: false
+};
+
+// ═══ التنقل ═══
+function go(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ═══ النجوم ═══
+function createStars() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 45; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2 + 1;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 5 + 's';
+    star.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    container.appendChild(star);
+  }
+}
+createStars();
+updateSoundButton();
+
+// ═══ تشغيل صوت الإهداء عند الدخول ═══
+// ينتظر تفاعل المستخدم لأن المتصفحات تمنع التشغيل التلقائي
+const dedicationEl = document.getElementById('dedication');
+if (dedicationEl) {
+  // المحاولة الأولى: تشغيل تلقائي
+  setTimeout(() => {
+    if (typeof playSound === 'function' && SOUND_CONFIG.enabled) {
+      playSound('dedication.mp3', 0.85);
+    }
+  }, 500);
+
+  // إضافة تشغيل عند أول كلكة (في حال منع المتصفح التشغيل التلقائي)
+  document.addEventListener('click', function startDedicationOnce() {
+    if (typeof playSound === 'function' && SOUND_CONFIG.enabled) {
+      playSound('dedication.mp3', 0.85);
+    }
+    document.removeEventListener('click', startDedicationOnce);
+  }, { once: true });
+}
+
+// ═══ إخفاء الإهداء تلقائياً ═══
+setTimeout(() => {
+  const d = document.getElementById('dedication');
+  if (d) d.style.display = 'none';
+}, 16000);
+
+// ═══ ستارة المسرح ═══
+// ═══════════════════════════════════════════════════════════════
+// نظام الصوت — يعمل فقط في لحظات الانتقال
+// ═══════════════════════════════════════════════════════════════
+const SOUND_CONFIG = {
+  enabled: true,           // يمكن للمستخدم إيقافه
+  volume: 0.4,             // 40% للموسيقى الخلفية (هادئة)
+  effectsVolume: 0.6,      // 60% للمؤثرات
+  basePath: '/sounds/'     // المسار للملفات الصوتية
+};
+
+// حفظ تفضيل المستخدم
+if (localStorage.getItem('miraah_sound') === 'off') {
+  SOUND_CONFIG.enabled = false;
+}
+
+let ambientAudio = null;   // الموسيقى الخلفية الحالية
+
+function playSound(filename, volume = SOUND_CONFIG.effectsVolume) {
+  if (!SOUND_CONFIG.enabled) return;
+  try {
+    const audio = new Audio(SOUND_CONFIG.basePath + filename);
+    audio.volume = volume;
+    audio.play().catch(() => {});  // تجاهل الأخطاء بصمت
+  } catch (e) {}
+}
+
+function playAmbient(filename) {
+  if (!SOUND_CONFIG.enabled) return;
+  stopAmbient();
+  try {
+    ambientAudio = new Audio(SOUND_CONFIG.basePath + filename);
+    ambientAudio.volume = SOUND_CONFIG.volume;
+    ambientAudio.loop = true;
+    ambientAudio.play().catch(() => {});
+  } catch (e) {}
+}
+
+function stopAmbient() {
+  if (ambientAudio) {
+    try {
+      ambientAudio.pause();
+      ambientAudio.currentTime = 0;
+    } catch (e) {}
+    ambientAudio = null;
+  }
+}
+
+function fadeOutAmbient(duration = 1500) {
+  if (!ambientAudio) return;
+  const startVol = ambientAudio.volume;
+  const steps = 20;
+  const stepTime = duration / steps;
+  const stepVol = startVol / steps;
+  let i = 0;
+  const interval = setInterval(() => {
+    i++;
+    if (ambientAudio && i < steps) {
+      ambientAudio.volume = Math.max(0, startVol - stepVol * i);
+    } else {
+      clearInterval(interval);
+      stopAmbient();
+    }
+  }, stepTime);
+}
+
+function toggleSound() {
+  SOUND_CONFIG.enabled = !SOUND_CONFIG.enabled;
+  localStorage.setItem('miraah_sound', SOUND_CONFIG.enabled ? 'on' : 'off');
+  if (!SOUND_CONFIG.enabled) stopAmbient();
+  updateSoundButton();
+}
+
+function updateSoundButton() {
+  const btn = document.getElementById('sound-toggle');
+  if (btn) {
+    btn.textContent = SOUND_CONFIG.enabled ? '🔊' : '🔇';
+    btn.title = SOUND_CONFIG.enabled ? 'إيقاف الصوت' : 'تشغيل الصوت';
+  }
+}
+
+// خريطة أصوات الفصول (موسيقى خلفية حسب الجنس الدرامي)
+const CHAPTER_AMBIENT = {
+  1: 'ambient-warm.mp3',       // كوميدي-لايت
+  2: 'ambient-calm.mp3',       // درامي بوليسي
+  3: 'ambient-nostalgic.mp3',  // شاعري
+  4: 'ambient-tension.mp3',    // بوليسي أخلاقي
+  5: 'ambient-mystery.mp3',    // رعب نفسي لطيف
+  6: 'ambient-reveal.mp3',     // بوليسي نفسي
+  7: 'ambient-healing.mp3',    // درامي رفيع
+  8: 'ambient-desert.mp3',     // قيمي مسرحي
+  9: 'ambient-echo.mp3',       // اجتماعي نفسي
+  10: 'ambient-epic.mp3'       // ملحمي ختامي
+};
+
+// ═══ راوتر الصوت — تجربة دخول المسرح الكاملة ═══
+async function raiseCurtain(chapterNum) {
+  const overlay = document.getElementById('curtain');
+  const titleEl = document.getElementById('curtain-title');
+  titleEl.textContent = CHAPTERS_DATA[chapterNum].act;
+  overlay.classList.remove('rising');
+  overlay.querySelector('.curtain-right').style.transform = 'translateX(0)';
+  overlay.querySelector('.curtain-left').style.transform = 'translateX(0)';
+  overlay.classList.add('active');
+
+  // 🛑 إيقاف أي صوت سابق
+  fadeOutAmbient(500);
+
+  // 🎭 المرحلة 1: همس المسرح (الجمهور قبل العرض) — 1.5 ثانية
+  playSound('theater-ambience.mp3', 0.4);
+  await new Promise(r => setTimeout(r, 1200));
+
+  // 🎭 المرحلة 2: ضربة عود واحدة عميقة — 0.5 ثانية
+  playSound('oud-strike.mp3', 0.5);
+  await new Promise(r => setTimeout(r, 600));
+
+  // 🎭 المرحلة 3: صوت ستارة ترتفع
+  playSound('curtain-rise.mp3', 0.55);
+  overlay.classList.add('rising');
+  await new Promise(r => setTimeout(r, 2400));
+  overlay.classList.remove('active', 'rising');
+
+  // 🎙️ المرحلة 4: صوت Abdullah — افتتاحية الفصل
+  playSound(`chapter-${chapterNum}-intro.mp3`, 0.75);
+
+  // 🎵 المرحلة 5: الموسيقى الخلفية للفصل (تبدأ هادئة تحت الصوت)
+  const ambient = CHAPTER_AMBIENT[chapterNum];
+  if (ambient) {
+    setTimeout(() => playAmbient(ambient), 800);
+  }
+}
+
+// ═══ API ═══
+async function api(endpoint, body) {
+  try {
+    const res = await fetch(`/.netlify/functions/${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    return await res.json();
+  } catch (e) {
+    return { ok: false, error: "فشل الاتصال. حاول مرة أخرى." };
+  }
+}
+
+// ═══ تحقق الكود ═══
+async function verifyCode() {
+  const code = document.getElementById('code-input').value.trim().toUpperCase();
+  const errorEl = document.getElementById('code-error');
+  errorEl.style.display = 'none';
+
+  if (!code) { errorEl.textContent = 'اكتب الكود'; errorEl.style.display = 'block'; return; }
+
+  const res = await api('codes', { action: 'verify_code', code });
+  if (!res.ok) { errorEl.textContent = res.error || 'كود غير صحيح'; errorEl.style.display = 'block'; return; }
+
+  const data = res.data;
+  state.code = data.code;
+  state.isInvited = false;
+  state.userName = data.name || "الممثل";
+  state.inviteCode = data.inviteCode;
+  state.hasInvite = !!data.inviteCode;
+
+  const progress = data.main_progress || { stage: 1, answers: [], certificates: [] };
+  state.stage = progress.stage || 1;
+  state.allAnswers = progress.answers || [];
+  state.certificates = progress.certificates || [];
+
+  if (state.stage > 10) { showFinal(); return; }
+  showWelcome();
+}
+
+// ═══ تحقق الدعوة ═══
+async function verifyInvite() {
+  const name = document.getElementById('invite-name').value.trim();
+  const inviteCode = document.getElementById('invite-code-input').value.trim().toUpperCase();
+  const errorEl = document.getElementById('invite-error');
+  errorEl.style.display = 'none';
+
+  if (!name) { errorEl.textContent = 'اكتب اسمك'; errorEl.style.display = 'block'; return; }
+  if (!inviteCode) { errorEl.textContent = 'اكتب كود الدعوة'; errorEl.style.display = 'block'; return; }
+
+  const res = await api('codes', { action: 'verify_invite', inviteCode, inviteUserName: name });
+  if (!res.ok) { errorEl.textContent = res.error || 'كود دعوة غير صحيح'; errorEl.style.display = 'block'; return; }
+
+  state.code = res.data.parentCode;
+  state.isInvited = true;
+  state.userName = name;
+  state.stage = 1;
+  state.allAnswers = [];
+  state.certificates = [];
+
+  const codeRes = await api('codes', { action: 'verify_code', code: state.code });
+  if (codeRes.ok && codeRes.data.invited_progress) {
+    const p = codeRes.data.invited_progress;
+    state.stage = p.stage || 1;
+    state.allAnswers = p.answers || [];
+    state.certificates = p.certificates || [];
+  }
+
+  if (state.stage > 10) { showFinal(); return; }
+  showWelcome();
+}
+
+// ═══ الترحيب ═══
+function showWelcome() {
+  document.getElementById('welcome-user').textContent = state.userName;
+  document.getElementById('play-user').textContent = state.userName;
+  document.getElementById('cert-user').textContent = state.userName;
+  document.getElementById('welcome-greeting').textContent = `أهلاً بكِ، ${state.userName}`;
+
+  if (state.hasInvite && state.inviteCode && !state.isInvited) {
+    document.getElementById('welcome-invite-section').style.display = 'block';
+    document.getElementById('welcome-invite-code').textContent = state.inviteCode;
+  }
+  go('screen-welcome');
+}
+
+// ═══ بدء اللعبة ═══
+async function startGame() {
+  state.questionNumber = 1;
+  updateChapterHeader();
+  go('screen-play');
+  await raiseCurtain(state.stage);
+  await loadNextQuestion();
+}
+
+// ═══ رأس الفصل ═══
+function updateChapterHeader() {
+  const c = CHAPTERS_DATA[state.stage];
+  document.getElementById('chapter-title').textContent = c.act;
+  document.getElementById('scene-count').textContent = `المشهد ${ARABIC_NUM[state.questionNumber]} من ${ARABIC_NUM[10]}`;
+  document.getElementById('scene-number').textContent = `SCENE ${ROMAN[state.questionNumber]}`;
+
+  // شريط الفيلم
+  const filmEl = document.getElementById('progress-film');
+  filmEl.innerHTML = '';
+  const totalDone = (state.stage - 1) * QUESTIONS_PER_CHAPTER + state.questionNumber - 1;
+  for (let i = 0; i < 100; i++) {
+    const frame = document.createElement('div');
+    frame.className = 'progress-frame';
+    if (i < totalDone) frame.classList.add('done');
+    else if (i === totalDone) frame.classList.add('current');
+    filmEl.appendChild(frame);
+  }
+}
+
+// ═══ جلب المشهد التالي ═══
+async function loadNextQuestion() {
+  document.getElementById('play-loading').style.display = 'block';
+  document.getElementById('scene-box').style.opacity = '0.3';
+  document.getElementById('scene-directions').style.display = 'none';
+  document.getElementById('options-list').innerHTML = '';
+
+  const playerHistory = state.allAnswers.slice(-5).map(a => ({
+    stage: a.stage, question: a.question, selected: a.selected
+  }));
+
+  const res = await api('mirror', {
+    action: 'generate_question',
+    stage: state.stage,
+    playerHistory
+  });
+
+  document.getElementById('play-loading').style.display = 'none';
+  document.getElementById('scene-box').style.opacity = '1';
+
+  if (!res.ok) {
+    document.getElementById('scene-text').textContent = 'حدث خطأ... حاول مرة أخرى';
+    document.getElementById('options-list').innerHTML = '<button class="btn btn-ghost btn-small" onclick="loadNextQuestion()">إعادة المحاولة</button>';
+    return;
+  }
+
+  const q = res.data;
+  state.currentQuestion = q;
+
+  // تعليق المخرج
+  const voiceWrap = document.getElementById('director-voice-wrap');
+  const comment = q.director_comment_on_previous || q.comment_on_previous || '';
+  if (comment && comment.trim()) {
+    voiceWrap.innerHTML = `<div class="director-voice"><div class="director-voice-text">${comment}</div></div>`;
+  } else {
+    voiceWrap.innerHTML = '';
+  }
+
+  // إرشادات المخرج
+  if (q.scene_direction && q.scene_direction.trim()) {
+    document.getElementById('scene-directions').style.display = 'block';
+    document.getElementById('scene-direction-text').textContent = q.scene_direction;
+
+    if (q.sound_cue && q.sound_cue.trim()) {
+      const scEl = document.getElementById('sound-cue');
+      scEl.style.display = 'inline-flex';
+      scEl.innerHTML = `<span>${q.sound_cue}</span>`;
+    } else {
+      document.getElementById('sound-cue').style.display = 'none';
+    }
+  }
+
+  // السؤال
+  document.getElementById('scene-text').textContent = q.question;
+
+  // الخيارات
+  const optionsEl = document.getElementById('options-list');
+  optionsEl.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.className = 'option-drama';
+    div.textContent = opt;
+    div.onclick = () => selectOption(i, opt);
+    optionsEl.appendChild(div);
+  });
+
+  updateChapterHeader();
+  window.scrollTo(0, 0);
+}
+
+// ═══ اختيار ═══
+async function selectOption(index, text) {
+  document.querySelectorAll('#options-list .option-drama').forEach((el, i) => {
+    el.style.pointerEvents = 'none';
+    if (i === index) el.classList.add('selected');
+    else el.style.opacity = '0.4';
+  });
+
+  state.allAnswers.push({
+    stage: state.stage,
+    q: state.questionNumber,
+    question: state.currentQuestion.question,
+    options: state.currentQuestion.options,
+    selected: text,
+    selectedIndex: index,
+    note: state.currentQuestion.psychological_note || ""
+  });
+
+  await saveProgress();
+  await new Promise(r => setTimeout(r, 700));
+
+  state.questionNumber++;
+  if (state.questionNumber > QUESTIONS_PER_CHAPTER) {
+    await generateCertificate();
+  } else {
+    await loadNextQuestion();
+  }
+}
+
+// ═══ القفلة ═══
+async function generateCertificate() {
+  document.getElementById('play-loading').style.display = 'block';
+  document.getElementById('scene-box').style.opacity = '0.3';
+  document.getElementById('options-list').innerHTML = '';
+  document.getElementById('director-voice-wrap').innerHTML = '';
+  document.getElementById('scene-directions').style.display = 'none';
+
+  const stageAnswers = state.allAnswers.filter(a => a.stage === state.stage);
+  const res = await api('mirror', {
+    action: 'generate_description',
+    stage: state.stage,
+    allAnswers: stageAnswers
+  });
+
+  if (!res.ok) { alert('حدث خطأ في توليد الشهادة'); return; }
+
+  const cert = res.data;
+  cert.stage = state.stage;
+  state.certificates.push(cert);
+  await saveProgress();
+
+  showCertificate(cert);
+}
+
+// ═══ عرض القفلة ═══
+function showCertificate(cert) {
+  // 🎵 صوت إسدال الستارة + إيقاف الموسيقى الخلفية
+  fadeOutAmbient(800);
+  setTimeout(() => playSound('curtain-fall.mp3', 0.5), 200);
+
+  const c = CHAPTERS_DATA[cert.stage];
+  document.getElementById('cert-direction').textContent = cert.curtain_direction || '';
+  document.getElementById('cert-badge').textContent = c.badge;
+  document.getElementById('cert-title').textContent = cert.certificate_title || c.title;
+  document.getElementById('cert-subtitle').textContent = cert.certificate_subtitle || c.subtitle;
+  document.getElementById('cert-monologue').innerHTML = (cert.monologue || cert.description || '').replace(/\n/g, '<br>');
+
+  const traitsEl = document.getElementById('cert-traits');
+  traitsEl.innerHTML = '';
+  (cert.three_traits || cert.top_traits || []).forEach(t => {
+    const chip = document.createElement('span');
+    chip.className = 'trait-laurel';
+    chip.textContent = t;
+    traitsEl.appendChild(chip);
+  });
+
+  document.getElementById('cert-growth').textContent = cert.growth_whisper || cert.growth_area || '';
+  document.getElementById('cert-power').textContent = cert.power_explanation || '';
+  document.getElementById('cert-closing').innerHTML = (cert.closing_line || '').replace(/\n/g, '<br>');
+  document.getElementById('cert-player-name').textContent = state.userName.toUpperCase();
+  document.getElementById('cert-date').textContent = new Date().toLocaleDateString('ar-KW', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  const nextBtn = document.getElementById('next-stage-btn');
+  if (cert.stage >= 10) nextBtn.textContent = 'الشهادةُ الكبرى';
+  else nextBtn.textContent = `الفصل ${ARABIC_NUM[cert.stage + 1]} التالي`;
+
+  document.getElementById('partner-btn').style.display = (state.hasInvite || state.isInvited) ? 'inline-block' : 'none';
+  go('screen-curtain-call');
+}
+
+// ═══ الفصل التالي ═══
+async function nextStage() {
+  state.stage++;
+  state.questionNumber = 1;
+  await saveProgress();
+
+  if (state.stage > 10) { showFinal(); }
+  else {
+    go('screen-play');
+    await raiseCurtain(state.stage);
+    await loadNextQuestion();
+  }
+}
+
+// ═══ الختام ═══
+function showFinal() {
+  // 🎵 صوت التصفيق الختامي
+  fadeOutAmbient(1000);
+  setTimeout(() => playSound('final-applause.mp3', 0.4), 500);
+
+  const finalCert = state.certificates[state.certificates.length - 1];
+  if (finalCert) {
+    document.getElementById('final-monologue').innerHTML = (finalCert.monologue || finalCert.description || '').replace(/\n/g, '<br>');
+    const traitsEl = document.getElementById('final-traits');
+    traitsEl.innerHTML = '';
+    (finalCert.three_traits || finalCert.top_traits || []).forEach(t => {
+      const chip = document.createElement('span');
+      chip.className = 'trait-laurel';
+      chip.textContent = t;
+      traitsEl.appendChild(chip);
+    });
+    document.getElementById('final-power').textContent = finalCert.power_explanation || '';
+    document.getElementById('final-closing').innerHTML = (finalCert.closing_line || '').replace(/\n/g, '<br>');
+  }
+  document.getElementById('final-player-name').textContent = state.userName.toUpperCase();
+
+  if (state.hasInvite && state.inviteCode && !state.isInvited) {
+    document.getElementById('final-invite-section').style.display = 'block';
+    document.getElementById('final-invite-code').textContent = state.inviteCode;
+  }
+  if (state.hasInvite || state.isInvited) {
+    document.getElementById('final-partner-btn').style.display = 'inline-block';
+  }
+  go('screen-final');
+}
+
+// ═══ نسخ الدعوة ═══
+function copyInvite() {
+  const code = document.getElementById('final-invite-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    document.getElementById('copy-btn').textContent = '✓ تم النسخ';
+    setTimeout(() => { document.getElementById('copy-btn').textContent = 'نسخ التذكرة'; }, 2000);
+  });
+}
+
+// ═══ الشريك ═══
+async function showPartner() {
+  const res = await api('codes', { action: 'get_partner_results', code: state.code, requesterIsInvited: state.isInvited });
+  if (!res.ok) { alert('لم نتمكن من جلب بيانات الشريك'); return; }
+
+  const p = res.data;
+  document.getElementById('partner-label').textContent = p.partner_name || 'الشريك';
+  document.getElementById('my-stage-display').textContent = ARABIC_NUM[Math.min(state.stage, 10)];
+  document.getElementById('my-current-title').textContent = CHAPTERS_DATA[Math.min(state.stage, 10)].inner;
+  document.getElementById('partner-stage-display').textContent = p.partner_stage > 10 ? '١٠ ✓' : (ARABIC_NUM[p.partner_stage] || '—');
+  document.getElementById('partner-current-title').textContent = p.partner_stage ? (CHAPTERS_DATA[Math.min(p.partner_stage, 10)]?.inner || '—') : '—';
+
+  const certsList = document.getElementById('partner-certs-list');
+  certsList.innerHTML = '';
+  if (p.partner_certificates && p.partner_certificates.length > 0) {
+    certsList.innerHTML = '<div style="color: var(--mirror); font-size: 12px; margin-bottom: 10px; text-align: center; letter-spacing: 2px;">شهاداتُ الشريك</div>';
+    p.partner_certificates.forEach(c => {
+      const cd = CHAPTERS_DATA[c.stage];
+      const div = document.createElement('div');
+      div.style.cssText = 'padding: 11px 14px; background: var(--bg-card); border-radius: 8px; margin: 6px 0; text-align: right; border-right: 2px solid var(--gold-deep); font-family: \'Amiri\', serif;';
+      div.innerHTML = `<strong style="color: var(--gold);">${cd.badge} ${c.certificate_title || cd.title}</strong><div style="color: var(--ink-muted); font-size: 12px; margin-top: 3px;">${c.certificate_subtitle || ''}</div>`;
+      certsList.appendChild(div);
+    });
+  } else {
+    certsList.innerHTML = '<div style="color: var(--ink-muted); font-size: 13px; text-align: center; padding: 20px;">لم يبدأ شريكك بعد</div>';
+  }
+  go('screen-partner');
+}
+
+function backFromPartner() {
+  if (state.stage > 10) go('screen-final');
+  else go('screen-curtain-call');
+}
+
+// ═══ حفظ ═══
+async function saveProgress() {
+  await api('codes', {
+    action: 'save_progress', code: state.code, isInvited: state.isInvited,
+    progress: { stage: state.stage, answers: state.allAnswers, certificates: state.certificates, current_q: state.questionNumber }
+  });
+}
+</script>
+
+</body>
+</html>
